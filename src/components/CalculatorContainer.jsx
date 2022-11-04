@@ -6,7 +6,7 @@ import './styles/CalculatorContainer.css'
 const CalculatorContainer = () => {
 
     const [display, setDisplay] = useState([])
-    const [result, setResult] = useState("")
+    const [displayResult, setDisplayResult] = useState("")
 
     const handleClick = (button) => {
         setDisplay([...display, button])
@@ -35,7 +35,7 @@ const CalculatorContainer = () => {
             result.splice(i - 1, 1)
         }
     }
-
+    
     const handleResult = () => {
         let result = display.join("")
         result = result.split(" ")
@@ -43,18 +43,19 @@ const CalculatorContainer = () => {
         operation("/", result)
         operation("+", result)
         operation("-", result)
-        setResult(result)
-
+        console.log(result);
+        setDisplayResult(result)
+        
     }
 
     const handleAC = () => {
         setDisplay([])
-        setResult("")
+        setDisplayResult("")
     }
 
     return (
         <div className="calculatorContainer">
-            <Display display={display} result={result} />
+            <Display display={display} result={displayResult} />
             <ButtonPanel handleClick={handleClick} handleResult={handleResult} handleAC={handleAC} />
         </div>
     )
