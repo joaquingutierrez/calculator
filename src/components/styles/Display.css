@@ -1,0 +1,9 @@
+.displayContainer {
+    border: 1px solid black;
+    background-color: gray;
+}
+
+.display {
+    text-align: end;
+    margin: auto 2%;
+}
