@@ -45,7 +45,7 @@ const CalculatorContainer = () => {
             result.splice(1, 2)
         }
         //operation with a negative number => ["numberA","*","","-","numberB"] || ["numberA","-","","*","numberB"]
-        if (result.some((element) => element === "")) {
+        while (result.some((element) => element === "")) {
             const i = result.findIndex((element) => element === "")
             if ((result[i + 1] === "-" && result[i - 1] !== "-") || (result[i - 1] === "-" && result[i + 1] !== "-")) {
                 result[i + 2] = - parseFloat(result[i + 2])
@@ -56,6 +56,7 @@ const CalculatorContainer = () => {
             } else {
                 return setDisplayResult("Syntax Error")
             }
+            if (isNaN(result[i])) { return setDisplayResult("Syntax Error") }
         }
         operation("*", result)
         operation("/", result)
