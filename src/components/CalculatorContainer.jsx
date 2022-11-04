@@ -35,17 +35,34 @@ const CalculatorContainer = () => {
             result.splice(i - 1, 1)
         }
     }
-    
+
     const handleResult = () => {
         let result = display.join("")
         result = result.split(" ")
+        //if the first number of the array is a negative => ["","-","number"]
+        if (result[0] === "" && result[1] === "-") {
+            result[0] = - parseFloat(result[2])
+            result.splice(1, 2)
+        }
+        //operation with a negative number => ["numberA","*","","-","numberB"] || ["numberA","-","","*","numberB"]
+        if (result.some((element) => element === "")) {
+            const i = result.findIndex((element) => element === "")
+            if ((result[i + 1] === "-" && result[i - 1] !== "-") || (result[i - 1] === "-" && result[i + 1] !== "-")) {
+                result[i + 2] = - parseFloat(result[i + 2])
+                result[i + 1] === "-" ? result.splice(i, 2) : result.splice(i - 1, 2)
+            } else if (result[i + 1] === "-" && result[i - 1] === "-") {
+                result[i + 2] = - parseFloat(result[i + 2])
+                result.splice(i - 1, 2)
+            } else {
+                return setDisplayResult("Syntax Error")
+            }
+        }
         operation("*", result)
         operation("/", result)
         operation("+", result)
         operation("-", result)
-        console.log(result);
         setDisplayResult(result)
-        
+
     }
 
     const handleAC = () => {
