@@ -71,10 +71,16 @@ const CalculatorContainer = () => {
         setDisplayResult("")
     }
 
+    const handleDEL = () => {
+        const newDisplay = [...display]
+        newDisplay.pop()
+        setDisplay([...newDisplay])
+    }
+
     return (
         <div className="calculatorContainer">
             <Display display={display} result={displayResult} />
-            <ButtonPanel handleClick={handleClick} handleResult={handleResult} handleAC={handleAC} />
+            <ButtonPanel handleClick={handleClick} handleResult={handleResult} handleAC={handleAC} handleDEL={handleDEL}/>
         </div>
     )
 }
