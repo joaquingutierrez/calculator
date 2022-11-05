@@ -3,3 +3,9 @@
     margin: 1% auto;
     border: 5px solid black;
 }
+
+@media (max-width: 480px) {
+    .calculatorContainer {
+        width: 95%;
+    }
+}

@@ -8,6 +8,8 @@ const CalculatorContainer = () => {
     const [display, setDisplay] = useState([])
     const [displayResult, setDisplayResult] = useState("")
 
+    let Ans = []
+
     const handleClick = (button) => {
         setDisplay([...display, button])
     }
@@ -77,10 +79,16 @@ const CalculatorContainer = () => {
         setDisplay([...newDisplay])
     }
 
+    const handleAns = () => {
+        Ans = [displayResult]
+        setDisplay([Ans])
+        setDisplayResult("")
+    }
+
     return (
         <div className="calculatorContainer">
             <Display display={display} result={displayResult} />
-            <ButtonPanel handleClick={handleClick} handleResult={handleResult} handleAC={handleAC} handleDEL={handleDEL}/>
+            <ButtonPanel handleClick={handleClick} handleResult={handleResult} handleAC={handleAC} handleDEL={handleDEL} handleAns={handleAns}/>
         </div>
     )
 }
